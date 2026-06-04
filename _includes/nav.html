@@ -1,15 +1,15 @@
 <nav id="navbar" class="fixed-top meta-text mx-3 pt-2 mb-5 bg-white">
-  <a href="/" class="float-start">
+  <a href="{{ '/' | prepend: site.url }}" class="float-start">
     <!-- <h5>Matthew Blanco</h5> -->
      <!-- <img class="nav-logo" src="{{ " /assets/images/blanco-logo-icon.png" | prepend: site.baseurl }}" /> -->
       <div id="navbar-sketch" style="width: 10vw; height: 5vh; position: absolute;"></div>
   </a>
   <ul class="nav navbar-expand-lg navbar-light ms-auto w-fit">
-    <li><a {% if page.active_section == 'home' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'home' %} class="nav-item" href="{{ "/"  | prepend: site.baseurl }}"{% endunless %} title="Home">Home</a></li>
-    <li><a {% if page.active_section == 'about' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'about' %} class="nav-item" href="{{ "/about"  | prepend: site.baseurl }}"{% endunless %} title="About">About</a></li>
-    <li><a {% if page.active_section == 'projects' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'projects' %} class="nav-item" href="{{ "/projects"  | prepend: site.baseurl }}"{% endunless %} title="Projects">Projects</a></li>
-    <li><a {% if page.active_section == 'research' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'research' %} class="nav-item" href="{{ "/research"  | prepend: site.baseurl }}"{% endunless %} title="Research">Research</a></li>
-    <li><a {% if page.active_section == 'cv' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'cv' %} class="nav-item" href="{{ "/cv"  | prepend: site.baseurl }}"{% endunless %} title="cv">CV</a></li>
+    <li><a {% if page.active_section == 'home' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'home' %} class="nav-item" href="{{ '/' | prepend: site.url }}"{% endunless %} title="Home">Home</a></li>
+    <li><a {% if page.active_section == 'about' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'about' %} class="nav-item" href="{{ '/about' | prepend: site.url }}"{% endunless %} title="About">About</a></li>
+    <li><a {% if page.active_section == 'projects' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'projects' %} class="nav-item" href="{{ '/projects' | prepend: site.url }}"{% endunless %} title="Projects">Projects</a></li>
+    <li><a {% if page.active_section == 'research' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'research' %} class="nav-item" href="{{ '/research' | prepend: site.url }}"{% endunless %} title="Research">Research</a></li>
+    <li><a {% if page.active_section == 'cv' %}class="nav-current nav-item"{% endif %} {% unless page.active_section == 'cv' %} class="nav-item" href="{{ '/cv' | prepend: site.url }}"{% endunless %} title="cv">CV</a></li>
   </ul>
 </nav>
 
