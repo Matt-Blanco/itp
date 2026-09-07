@@ -5,6 +5,10 @@
   src: url("../assets/Blanco.ttf"), auto;
 }
 
+.object-fit-cover {
+  object-fit: cover !important;
+}
+
 .inclusive-sans-regular {
   font-family: "Inclusive Sans", serif;
   font-weight: 400;
