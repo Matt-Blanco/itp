@@ -12,6 +12,38 @@ layout: default
         <h2 class="mt-0">ITP Blog</h2>
         <div class="row">
             <div class="container">
+                <h3>Fall 2026</h3>
+                <div class="row">
+                    <h5>Thesis: Research & Development</h5>
+                    <ul>
+                        {% for post in site.posts %}
+                        {% if post.category == 'thesis' %}
+                        <div class="col-12">
+                            <a href="{{ post.url | relative_url }}">
+                                <p>{{ post.title }}</p>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="row">
+                    <h5>Computational Approaches to Narrative</h5>
+                    <ul>
+                        {% for post in site.posts %}
+                        {% if post.category == 'catn' %}
+                        <div class="col-12">
+                            <a href="{{ post.url | relative_url }}">
+                                <p>{{ post.title }}</p>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="container">
                 <h3>Spring 2026</h3>
                 <div class="row">
                     <h5>
@@ -21,7 +53,9 @@ layout: default
                         {% for post in site.posts %}
                         {% if post.category == 'energy' %}
                         <div class="col-12">
-                            <a href="{{ post.url | relative_url }}"><p>{{ post.title }}</p></a>
+                            <a href="{{ post.url | relative_url }}">
+                                <p>{{ post.title }}</p>
+                            </a>
                         </div>
                         <!-- {{ post.excerpt }} -->
                         {% endif %}
@@ -36,7 +70,9 @@ layout: default
                         {% for post in site.posts %}
                         {% if post.category == 'noc' %}
                         <div class="col-12">
-                            <a href="{{ post.url | relative_url }}"><p>{{ post.title }}</p></a>
+                            <a href="{{ post.url | relative_url }}">
+                                <p>{{ post.title }}</p>
+                            </a>
                         </div>
                         <!-- {{ post.excerpt }} -->
                         {% endif %}
@@ -51,7 +87,9 @@ layout: default
                         {% for post in site.posts %}
                         {% if post.category == 'intangible' %}
                         <div class="col-12">
-                            <a href="{{ post.url | relative_url }}"><p>{{ post.title }}</p></a>
+                            <a href="{{ post.url | relative_url }}">
+                                <p>{{ post.title }}</p>
+                            </a>
                         </div>
                         <!-- {{ post.excerpt }} -->
                         {% endif %}
@@ -72,7 +110,9 @@ layout: default
                     {% for post in site.posts %}
                     {% if post.category == 'pcomp' %}
                     <div class="col-12">
-                        <a href="{{ post.url | relative_url }}"><p>{{ post.title }}</p></a>
+                        <a href="{{ post.url | relative_url }}">
+                            <p>{{ post.title }}</p>
+                        </a>
                     </div>
                     <!-- {{ post.excerpt }} -->
                     {% endif %}
@@ -85,7 +125,9 @@ layout: default
                     {% for post in site.posts %}
                     {% if post.category == 'icm' %}
                     <div class="col-12">
-                        <a href="{{ post.url | relative_url }}"><p>{{ post.title }}</p></a>
+                        <a href="{{ post.url | relative_url }}">
+                            <p>{{ post.title }}</p>
+                        </a>
                     </div>
                     <!-- {{ post.excerpt }} -->
                     {% endif %}
@@ -98,7 +140,9 @@ layout: default
                     {% for post in site.posts %}
                     {% if post.category == 'fab' %}
                     <div class="col-12">
-                        <a href="{{ post.url | relative_url }}" class="col-12"><p>{{ post.title }}</p></a>
+                        <a href="{{ post.url | relative_url }}" class="col-12">
+                            <p>{{ post.title }}</p>
+                        </a>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -110,7 +154,9 @@ layout: default
                     {% for post in site.posts %}
                     {% if post.category == 'applications' %}
                     <div class="col-12">
-                        <a href="{{ post.url | relative_url }}" class="col-12"><p>{{ post.title }}</p></a>
+                        <a href="{{ post.url | relative_url }}" class="col-12">
+                            <p>{{ post.title }}</p>
+                        </a>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -120,7 +166,7 @@ layout: default
     </div>
 </div>
 <script>
-  window.addEventListener("load", () => {
-    renderElements();
-  })
+    window.addEventListener("load", () => {
+        renderElements();
+    })
 </script>
