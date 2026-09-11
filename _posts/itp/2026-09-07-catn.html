@@ -1,0 +1,264 @@
+---
+active_section: itp
+layout: default
+author: Matt
+category: catn
+title: Week 1 - Creating Narratives
+---
+
+{% include blog_home.html%}
+
+<h3>(Attempting to) Make stories</h3>
+
+<div class="container">
+    <div class="row">
+        <p>
+            The idea that a story can be 'generated' was difficult to wrap my head around, and at first I had begun
+            thinking of immediate implementations of ways stories could be read. However, going through the reading
+            about The Myth of 'Universal' Narrative Models, Propp Functions, Kishōtenketsu I set to create an
+            "algorithm" that could be followed to create stories.
+        </p>
+        <p>
+            I've always enjoyed the way Studio Ghibli movies are told, so for the sketch I plan on creating a ...
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        The generated stories are based on the four-part Kishōtenketsu structure, and the stories themselves are based
+        on a series of functions that explore what happens after a "hero" returns home.
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <ol>
+            <li>
+                <h6>The Return</h6>
+                <ul>
+                    <li>
+                        The Ordinary World
+                    </li>
+                    <li>
+                        False sense of settling
+                    </li>
+                    <li>
+                        Retelling the tale
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h6>Heading a Routine</h6>
+                <ul>
+                    <li>
+                        Pack away the gear
+                    </li>
+                    <li>
+                        Finding a hobby
+                    </li>
+                    <li>
+                        Illusion of a call
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h6>The Re-Settling</h6>
+                <ul>
+                    <li>
+                        The search for community
+                    </li>
+                    <li>
+                        Connecting with lost friends
+                    </li>
+                    <li>
+                        New futures
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <pre>
+        <code>
+    {
+        "origin": "#[#setHero#][#setLove#][#setQuest#][#setDonor#][#setVillain#][#setHome#][#setCall#][#setReasons#][#setIllusion#]story#",
+        "setHero": [
+            "[hero:Garfield][heroDesc:a large cat][conveyance:magic lasagna pan]",
+            "[hero:Hermione Granger][heroDesc:a famous Gryffindor][conveyance:broomstick]",
+            "[hero:some guy][heroDesc:a guy I know][conveyance:rusty Toyota Corolla]"
+        ],
+        "setQuest": [
+            "[questObject:magic ring][destination:Mordor]",
+            "[questObject:ear of corn][destination:Nebraska]",
+            "[questObject:academic transcript][destination:the NYU Registrar's Office]"
+        ],
+        "setCall": [
+            "[donor:sickly bird][donorHelp:gives the #donor# a healing salve][magicItem:single glistening feather]",
+            "[donor:thirsty talking flower][donorHelp:waters the #donor# with a nearby watering can][magicItem:glowing pink petal]",
+            "[donor:hungry fox][donorHelp:feeds the #donor# some beef jerky][magicItem:shiny pendant]"
+        ],
+        "setVillain": [
+            "[villain:an old man][challenge:dancing contest]",
+            "[villain:an evil witch][challenge:magic duel]",
+            "[villain:a malevolent cloud of glowing fog][challenge:philosophical debate about the nature of existence]"
+        ],
+        "setReasons": [
+            "[needReason:an illness][solutionAction:heals]",
+            "[needReason:great poverty][solutionAction:enriches]",
+            "[needReason:an ancient Egyptian curse][solutionAction:lifts the curse from]"
+        ],
+        "setHome": [
+            "[home:the big city][homeDesc:a concrete jungle full of busy streets but the best food]",
+            "[home:small town][homeDesc:a quaint community of homes built in the 70s]"
+        ],
+        "setIllusion": [
+            "[illusoryCall: birds][illusoryDesc: A flock of birds in coordinated movements flew directly overhead #hero# and headed towards the horizon]",
+        ],
+        "hobby": ["hiking", "running", "painting", "poetry", "pasta making"],
+        "ordinary_job": ["accountant", "lifeguard", "engineer", "architect", "designer", "influencer"],
+        "return": [
+            "#hero.capitalize# returned to #home# after defeating #villain# and claiming the #questObject#."
+        ],
+        "ordinary_world": [
+            "With no more #donor# and the #magicItem# gone, the #hero# comes back to #home#\, #homeDesc#. Thoughts of #destination# are already fading away."
+        ],
+        "false_settling": [
+            "The #questObject# has been put away, and #hero# tries to adjust to ordinary life once again. After some time, they find a job as a #ordinary_job# and take up #hobby# to pass the time. Life begins to feel normal again."
+        ],
+        "retelling": [
+            "During the journey, life continued on in #home#, and many of the #hero#'s old friends moved on with their lives. Attempting to meet new people, #hero# retells their quest of how they claimed the #questObject# with the help of #donor# to defeat #villain# after during #challenge#."
+        ],
+        "packing": [
+            "Over time, the #conveyance# began collecting dust and #hero# decided it was time to pack everything away. There time going on adventures has come to an end."
+        ],
+        "illusion": [
+            "One day, as #hero# was walking around #home# they saw #illusoryDesc#. Tempted to take the #illusoryCall# as a sign they prepared their gear to leave once again."
+        ],
+        "setCommunity": [
+            "[group:d&d group]",
+            "[group:run club]",
+        ],
+        "new_friends": [
+            "[#setCommunity#]Downtrodden, #hero# continues searching for a day-to-day routin and finds a #group# to spend their time and be surrounded by new people."
+        ],
+        "lost_friends": [
+            "..."
+        ],
+        "ending": [
+            "The days turned to weeks then months and then years and the #hero#'s quest became legend even in their own head as they eventually became used to everyday life again."
+        ],
+        "story": [
+            "Once upon a time...\n#return#\n#ordinary_world#\n#false_settling#\n#retelling#\n#packing#\n#illusion#\n#new_friends#\n#ending#\nThe end."
+        ],
+    }
+        </code>
+        </pre>
+        <button class="btn border-3 border-dark col-3 " id="generate-story">Generate Story</button>
+        <div class="container">
+            <p class="my-3" id="story-container"></p>
+        </div>
+
+        <div class="container">
+            <p class="my-3">The stories generated use the above tracery grammar to explore life after the "Hero's
+                Journey". From fantastical narratives to ones closer to everyday life there's always a "day after" the
+                adventure ends. In a way similar to Studio Ghibli films, I wanted to generate stories that focus on the
+                broader world and how the hero exists within it.</p>
+            <p>
+                I don't think the generated stories follow my goal as much as I intended, but I mostly used it as an
+                exercise to better understand Tracery and how stories can be generated.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import tracery from 'https://cdn.jsdelivr.net/npm/tracery-grammar@2.8.4/+esm';
+
+    var grammar = tracery.createGrammar({
+        "origin": "#[#setHero#][#setLove#][#setQuest#][#setDonor#][#setVillain#][#setHome#][#setCall#][#setReasons#][#setIllusion#]story#",
+        "setHero": [
+            "[hero:Garfield][heroDesc:a large cat][conveyance:magic lasagna pan]",
+            "[hero:Hermione Granger][heroDesc:a famous Gryffindor][conveyance:broomstick]",
+            "[hero:some guy][heroDesc:a guy I know][conveyance:rusty Toyota Corolla]"
+        ],
+        "setQuest": [
+            "[questObject:magic ring][destination:Mordor]",
+            "[questObject:ear of corn][destination:Nebraska]",
+            "[questObject:academic transcript][destination:the NYU Registrar's Office]"
+        ],
+        "setCall": [
+            "[donor:sickly bird][donorHelp:gives the #donor# a healing salve][magicItem:single glistening feather]",
+            "[donor:thirsty talking flower][donorHelp:waters the #donor# with a nearby watering can][magicItem:glowing pink petal]",
+            "[donor:hungry fox][donorHelp:feeds the #donor# some beef jerky][magicItem:shiny pendant]"
+        ],
+        "setVillain": [
+            "[villain:an old man][challenge:dancing contest]",
+            "[villain:an evil witch][challenge:magic duel]",
+            "[villain:a malevolent cloud of glowing fog][challenge:philosophical debate about the nature of existence]"
+        ],
+        "setReasons": [
+            "[needReason:an illness][solutionAction:heals]",
+            "[needReason:great poverty][solutionAction:enriches]",
+            "[needReason:an ancient Egyptian curse][solutionAction:lifts the curse from]"
+        ],
+        "setHome": [
+            "[home:the big city][homeDesc:a concrete jungle full of busy streets but the best food]",
+            "[home:small town][homeDesc:a quaint community of homes built in the 70s]"
+        ],
+        "setIllusion": [
+            "[illusoryCall: birds][illusoryDesc: A flock of birds in coordinated movements flew directly overhead #hero# and headed towards the horizon]",
+        ],
+        "hobby": ["hiking", "running", "painting", "poetry", "pasta making"],
+        "ordinary_job": ["accountant", "lifeguard", "engineer", "architect", "designer", "influencer"],
+        "return": [
+            "#hero.capitalize# returned to #home# after defeating #villain# and claiming the #questObject#."
+        ],
+        "ordinary_world": [
+            "With no more #donor# and the #magicItem# gone, the #hero# comes back to #home#\, #homeDesc#. Thoughts of #destination# are already fading away."
+        ],
+        "false_settling": [
+            "The #questObject# has been put away, and #hero# tries to adjust to ordinary life once again. After some time, they find a job as a #ordinary_job# and take up #hobby# to pass the time. Life begins to feel normal again."
+        ],
+        "retelling": [
+            "During the journey, life continued on in #home#, and many of the #hero#'s old friends moved on with their lives. Attempting to meet new people, #hero# retells their quest of how they claimed the #questObject# with the help of #donor# to defeat #villain# after during #challenge#."
+        ],
+        "packing": [
+            "Over time, the #conveyance# began collecting dust and #hero# decided it was time to pack everything away. There time going on adventures has come to an end."
+        ],
+        "illusion": [
+            "One day, as #hero# was walking around #home# they saw #illusoryDesc#. Tempted to take the #illusoryCall# as a sign they prepared their gear to leave once again."
+        ],
+        "setCommunity": [
+            "[group:d&d group]",
+            "[group:run club]",
+        ],
+        "new_friends": [
+            "[#setCommunity#]Downtrodden, #hero# continues searching for a day-to-day routin and finds a #group# to spend their time and be surrounded by new people."
+        ],
+        "lost_friends": [
+            "..."
+        ],
+        "ending": [
+            "The days turned to weeks then months and then years and the #hero#'s quest became legend even in their own head as they eventually became used to everyday life again."
+        ],
+        "story": [
+            "Once upon a time...\n#return#\n#ordinary_world#\n#false_settling#\n#retelling#\n#packing#\n#illusion#\n#new_friends#\n#ending#\nThe end."
+        ],
+    });
+
+    grammar.addModifiers(tracery.baseEngModifiers);
+
+    console.log(grammar.flatten('#origin#'));
+
+    const btn = document.getElementById("generate-story")
+    btn.onclick = () => {
+        const storyContainer = document.getElementById("story-container")
+        storyContainer.textContent = ""
+        storyContainer.textContent = grammar.flatten('#origin#');
+    }
+</script>
