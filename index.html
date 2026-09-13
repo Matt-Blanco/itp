@@ -41,7 +41,20 @@ layout: default
                         {% endfor %}
                     </ul>
                 </div>
-
+                <div class="row">
+                    <h5>Fabricating Mechanical Autamata</h5>
+                    <ul>
+                        {% for post in site.posts %}
+                        {% if post.category == 'autamata' %}
+                        <div class="col-12">
+                            <a href="{{ post.url | relative_url }}">
+                                <p>{{ post.title }}</p>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
             <div class="container">
                 <h3>Spring 2026</h3>
