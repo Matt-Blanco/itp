@@ -28,6 +28,20 @@ layout: default
                     </ul>
                 </div>
                 <div class="row">
+                    <h5>Friction by Design: A Critical AI Studio</h5>
+                    <ul>
+                        {% for post in site.posts %}
+                        {% if post.category == 'friction' %}
+                        <div class="col-12">
+                            <a href="{{ post.url | relative_url }}">
+                                <p>{{ post.title }}</p>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="row">
                     <h5>Computational Approaches to Narrative</h5>
                     <ul>
                         {% for post in site.posts %}
