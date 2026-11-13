@@ -55,13 +55,13 @@ title: Week 1 - Creating and Experimenting
                         <div class="row">
                             <div class="my-2 col-6">
                                 <img src="{{ '/assets/images/itp-blog/pcomp/pcomp-lab2-setup.jpeg' | relative_url }}" alt="Lab 2 Materials"
-                                    class="img-fluid">
+                                    class="img-fluid shadow">
                                 <!-- <small>Figure 1. Obtaining materials for the second lab <em>Setting up a
                                         Breadboard</em></small> -->
                             </div>
                             <div class="my-2 col-6">
                                 <img src="{{ '/assets/images/itp-blog/pcomp/pcomp-lab2.jpeg' | relative_url }}" alt="Lab 2 Materials"
-                                    class="img-fluid">
+                                    class="img-fluid shadow">
                                 <!-- <small>Figure 2. Completing the schematic in the lab <em>Setting up a
                                         Breadboard</em></small> -->
                             </div>
@@ -78,7 +78,7 @@ title: Week 1 - Creating and Experimenting
                             {% unless image_extensions contains extension %}{% continue %}{% endunless %}
                             {% assign loopindex = forloop.index %}
                             <div class="col-3 mx-1 my-1">
-                                <img src="{{ image.path | relative_url }}" alt="image" class="img-fluid" />
+                                <img src="{{ image.path | relative_url }}" alt="image" class="img-fluid shadow" />
                                 <!-- <small>Figure {{ loopindex }}.</small> -->
                             </div>
                             {% endfor %}
