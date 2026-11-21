@@ -1,0 +1,190 @@
+---
+active_section: itp
+layout: default
+author: Matt
+category: catn
+title: Simulating Narrative
+---
+
+<style>
+    .direction-button {
+        background-color: transparent;
+        transition: all .25s ease-in-out;
+        border: none;
+    }
+
+    .direction-button,
+    .direction-button:active {
+        outline: 1px solid black;
+    }
+
+    .direction-button:hover {
+        outline-width: 3px;
+    }
+
+    /* #story is a zero-size anchor at the center of the map; it gets
+       translated so the focused location stays centered. */
+    #story {
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        transition: transform .5s ease-in-out;
+    }
+
+    .place {
+        position: absolute;
+        padding: 1rem;
+        transition: font-weight .25s ease-in-out;
+    }
+
+    .place.current {
+        font-weight: bold;
+    }
+</style>
+
+{% include blog_home.html %}
+
+<div class="row">
+    <div class="col-10 mx-auto">
+        <p>
+            For this week's homework I wanted to experiment with simulating space and a world (similar to Epitaph and
+            Emily
+            Short's <em>The Annals of the Parrigues</em>). Unlike both of those works I wanted to try providing more
+            wayfinding too. I'm a nerd for maps, so I thought it could be interesting to build a map as someone explores
+            the
+            simulated space.
+        </p>
+        <p>
+            A Tracery grammar generates a new location whenever traveling to a new location, and in this version,
+            re-visiting existing locations does not effect the previously generated place.
+        </p>
+    </div>
+</div>
+
+<div>
+    <div class="map col-12 position-relative overflow-scroll shadow my-5" style="height: 75vh;">
+
+        <div class="sticky-top col-4 my-3 pt-3 mx-4">
+            <div class="col-12 d-flex">
+                <button class="mx-auto direction-button north" data-direction="north">North</button>
+            </div>
+            <div class="col-12 d-flex">
+                <div class="col-12 mx-auto d-flex justify-content-between">
+                    <button class="direction-button west" data-direction="west">West</button>
+                    <button class="direction-button east" data-direction="east">East</button>
+                </div>
+            </div>
+            <div class="col-12 d-flex ">
+                <button class="mx-auto direction-button south" data-direction="south">South</button>
+            </div>
+        </div>
+
+        <div id="story" class="position-absolute"></div>
+    </div>
+</div>
+
+<script type="module">
+    import tracery from 'https://cdn.jsdelivr.net/npm/tracery-grammar@2.8.4/+esm';
+
+    var grammar = tracery.createGrammar({
+        "origin": "#[#setPlace#]story#",
+        "setPlace": ["[locBeginning:fo,da,ro,ch,lly,ors,drp,maaer][locMiddle:soe,pro,byyd,oeism][locEnd:som,ah,ch,sh,rd,rn,et,art]"],
+        "direction": ["north", "south", "east", "west", "northwest", "southwest", "northeast", "southeast"],
+        "landscape": ["coast", "river", "fjord", "valley", "mountain", "forest", "meadow"],
+        "place": "#locBeginning##locMiddle##locEnd#",
+        "orientation": "is #direction# along the #landscape#.",
+        "setSize": ["hamlet", "village", "city", "metropolis", "ghost town"],
+        "setFounders": ["gremlins", "witches", "protestants"],
+        "setFoundingYear": ["4012", "512", "9", "234", "1"],
+        "founding": `The #setSize# was first founded by #setFounders# in #setFoundingYear#`,
+        "setIndustry": ["fishing", "mining", "foresting", "truth-telling", "tourism", "art"],
+        "story": "#place.capitalize# is #direction# along the #landscape#. #founding#."
+    });
+
+    grammar.addModifiers(tracery.baseEngModifiers);
+
+    // Size of one grid cell on the map
+    const CELL_WIDTH = 320;
+    const CELL_HEIGHT = 180;
+
+    const DIRECTIONS = {
+        north: { x: 0, y: -1 },
+        south: { x: 0, y: 1 },
+        east: { x: 1, y: 0 },
+        west: { x: -1, y: 0 },
+    };
+
+    const locations = new Map();
+
+    let currentLocation;
+
+    function findLocationAt(x, y) {
+        for (const location of locations.values()) {
+            if (location.coordinates.x === x && location.coordinates.y === y) {
+                return location;
+            }
+        }
+        return undefined;
+    }
+
+    // Generate a place name that hasn't been used yet so it can be a unique map key
+    function generateName() {
+        let name;
+        let attempts = 0;
+        do {
+            const raw = grammar.flatten("#[#setPlace#]place#");
+            name = raw.charAt(0).toUpperCase() + raw.slice(1);
+            attempts++;
+        } while (locations.has(name) && attempts < 50);
+
+        return locations.has(name) ? `${name} ${locations.size + 1}` : name;
+    }
+
+    function generateLocation(x, y) {
+        const name = generateName();
+        const text = grammar.flatten(`#[place:${name}]story#`);
+
+        const element = document.createElement("div");
+        element.classList.add("place");
+        element.style.width = `${CELL_WIDTH}px`;
+        element.style.left = `${x * CELL_WIDTH - CELL_WIDTH / 2}px`;
+        element.style.top = `${y * CELL_HEIGHT - CELL_HEIGHT / 2}px`;
+        element.textContent = text;
+        document.getElementById("story").append(element);
+
+        const location = { element, text, coordinates: { x, y } };
+        locations.set(name, location);
+        return location;
+    }
+
+    function focusLocation(location) {
+        if (currentLocation) {
+            currentLocation.element.classList.remove("current");
+        }
+        location.element.classList.add("current");
+        currentLocation = location;
+
+        // Pan the map so the focused location sits in the center
+        const { x, y } = location.coordinates;
+        document.getElementById("story").style.transform =
+            `translate(${-x * CELL_WIDTH}px, ${-y * CELL_HEIGHT}px)`;
+    }
+
+    function move(direction) {
+        const offset = DIRECTIONS[direction];
+        const x = currentLocation.coordinates.x + offset.x;
+        const y = currentLocation.coordinates.y + offset.y;
+
+        const location = findLocationAt(x, y) ?? generateLocation(x, y);
+        focusLocation(location);
+    }
+
+    window.addEventListener("load", () => {
+        focusLocation(generateLocation(0, 0));
+    });
+
+    document.querySelectorAll(".direction-button").forEach((btn) => {
+        btn.addEventListener("click", () => move(btn.dataset.direction));
+    });
+</script>
